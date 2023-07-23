@@ -25,7 +25,7 @@ describe("Servers test (with setup and tear-down)", function() {
 
     let curTd = document.querySelectorAll('#serverTable tbody tr td');
 
-    expect(curTd.length).toEqual(2);
+    expect(curTd.length).toEqual(3);
     expect(curTd[0].innerText).toEqual('Alice');
     expect(curTd[1].innerText).toEqual('$0.00');
   });

@@ -24,3 +24,23 @@ function appendTd(tr, value) {
 
   tr.append(newTd);
 }
+
+// delete button and event listener for removing server from allServers and td
+function appendDeleteBtn(tr) {
+  let deleteBtn = document.createElement('td');
+  deleteBtn.className = 'deleteBtn';
+  deleteBtn.innerText = 'X';
+
+  deleteBtn.addEventListener('click', removeTr);
+
+  tr.append(deleteBtn);
+}
+
+function removeTr(e) {
+  let item = e.target.closest('tr');
+  
+  delete allServers[item.id];
+
+  item.parentNode.removeChild(item);
+  updateServerTable();
+}

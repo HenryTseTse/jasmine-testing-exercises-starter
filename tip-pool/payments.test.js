@@ -4,7 +4,7 @@ describe("Payments Test (with setup and tear-down)", function() {
         tipAmtInput.value = 40;
     });
 
-    it('should add a new bill and tip amount to allPayments  on submitPaymentInfo()', function() {
+    it('should add a new bill and tip amount to allPayments on submitPaymentInfo()', function() {
         submitPaymentInfo();
 
         expect(Object.keys(allPayments).length).toEqual(1);
@@ -27,7 +27,7 @@ describe("Payments Test (with setup and tear-down)", function() {
         
         let curTd = document.querySelectorAll('#paymentTable tbody tr td');
     
-        expect(curTd.length).toEqual(3);
+        expect(curTd.length).toEqual(4);
         expect(curTd[0].innerText).toEqual('$200');
         expect(curTd[1].innerText).toEqual('$40');
         expect(curTd[2].innerText).toEqual('20%');
@@ -48,6 +48,14 @@ describe("Payments Test (with setup and tear-down)", function() {
         let newPayment = createCurPayment();
 
         expect(newPayment).toEqual(undefined);
+    });
+
+    it('should generate a delete button on appendDeleteBtn()', function() {
+        let newTr = document.createElement('tr');
+        appendDeleteBtn(newTr);
+
+        expect(newTr.children.length).toEqual(1);
+        expect(newTr.firstChild.innerHTML).toEqual('X');
     });
 
     afterEach(function() {

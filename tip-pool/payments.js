@@ -57,6 +57,7 @@ function appendPaymentTable(curPayment) {
   appendTd(newTr, curPayment.tipPercent + '%');
 
   paymentTbody.append(newTr);
+  appendDeleteBtn(newTr);
 }
 
 // Create table row element and pass to appendTd with calculated sum of all payment
@@ -76,3 +77,22 @@ function updateSummary() {
   summaryTds[2].innerHTML =  Math.round(tipPercentAvg) + '%';
 }
 
+// delete button and event listener for removing payment from allPayments and td
+function appendDeleteBtn(tr) {
+  deleteBtn = document.createElement('td');
+  deleteBtn.className = 'deleteBtn';
+  deleteBtn.innerText = 'X';
+
+  deleteBtn.addEventListener('click', removeTr);
+
+  tr.append(deleteBtn);
+}
+
+function removeTr(e) {
+  let item = e.target.closest('tr');
+
+  delete allPayments[item];
+
+  item.parentNode.removeChild(item);
+  updateSummary();
+}
